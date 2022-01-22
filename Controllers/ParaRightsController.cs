@@ -1,12 +1,8 @@
 ﻿#nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovePara.Model;
+using Newtonsoft.Json.Linq;
 
 namespace MovePara.Controllers
 {
@@ -33,8 +29,8 @@ namespace MovePara.Controllers
         public async Task<ActionResult<string>> GetParaRightDesc()
         {
             var res= await _context.paraRight.Join(_context.para,pr=>pr.ParaId, p=>p.ParaId, (pr,p)=>new { Id = pr.Id, ParaText = p.ParaText }).OrderBy(x=>x.Id).ToListAsync();
-
-            return string.Join(System.Environment.NewLine, res);
+            
+            return string.Join(System.Environment.NewLine, res.Select(x=>x.ParaText));
         }
 
     }

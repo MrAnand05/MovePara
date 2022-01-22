@@ -1,9 +1,4 @@
 ﻿#nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -22,7 +17,7 @@ namespace MovePara.Controllers
             _context = context;
         }
 
-        [HttpPut]
+        [HttpDelete]
 
         [Route("Initialize")]
         public async Task<IActionResult> InitializeParaList()
@@ -32,8 +27,7 @@ namespace MovePara.Controllers
             return NoContent();
         }
 
-
-        [Route("Move/{id}")]
+        [Route("Move")]
 
         [HttpPost]
         public async Task<IActionResult> Move(string id, string side)
