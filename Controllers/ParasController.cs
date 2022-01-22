@@ -22,63 +22,27 @@ namespace MovePara.Controllers
             _context = context;
         }
 
-        // GET: api/ParaLeft
-        [HttpGet]
-
-        [Route("ParaLeft")]
-        public ActionResult<IEnumerable<ParaLeft>> GetparaLeft()
-        {
-            return _context.paraLeft.ToList();
-        }
-
-        // GET: api/ParaRight
-        [HttpGet]
-
-        [Route("ParaRight")]
-        public ActionResult<IEnumerable<ParaRight>> GetparaRight()
-        {
-            return _context.paraRight.ToList();
-        }
-
-        // GET: api/ParaRightDesc
-        [HttpGet]
-
-        [Route("ParaRightDesc")]
-        public ActionResult<IEnumerable<string>> GetparaRightDesc()
-        {
-            using(_context)
-            {
-                var res = from a in _context.paraRight
-                          join b in _context.para on a.ParaId equals b.ParaId
-                          select b.ParaText;
-                return res.ToList();
-            }
-        }
-
-        // GET: api/ParasRight
         [HttpPut]
 
         [Route("Initialize")]
-        public void InitializeParaList()
+        public async Task<IActionResult> InitializeParaList()
         {
-            using (_context)
-            {
-                var result =  _context.Database.ExecuteSqlRaw("Proc_Initilize");
-            }
+            await _context.Database.ExecuteSqlRawAsync("Proc_Initilize");
+
+            return NoContent();
         }
 
-        // GET: api/ParasRight
 
         [Route("Move/{id}")]
 
         [HttpPost]
-        public void Move(string id)
+        public async Task<IActionResult> Move(string id, string side)
         {
-            var idParam = new SqlParameter("@ParaId", id);
-            using (_context)
-            {
-                var result = _context.Database.ExecuteSqlRaw("Proc_Move @ParaId", idParam);
-            }
+            var paraId = new SqlParameter("@ParaId", id);
+            var sideId = new SqlParameter("@Side", side);
+            await _context.Database.ExecuteSqlRawAsync("Proc_Move @ParaId, @Side", paraId, sideId);
+            return NoContent();
         }
+
     }
 }

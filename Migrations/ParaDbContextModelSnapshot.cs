@@ -24,11 +24,20 @@ namespace MovePara.Migrations
             modelBuilder.Entity("MovePara.Model.Para", b =>
                 {
                     b.Property<string>("ParaId")
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(10)")
+                        .HasColumnOrder(2);
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnOrder(1);
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("ParaText")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnOrder(3);
 
                     b.HasKey("ParaId");
 
@@ -38,21 +47,25 @@ namespace MovePara.Migrations
                         new
                         {
                             ParaId = "A",
+                            Id = 0,
                             ParaText = "This is Para A"
                         },
                         new
                         {
                             ParaId = "B",
+                            Id = 0,
                             ParaText = "This is Para B"
                         },
                         new
                         {
                             ParaId = "C",
+                            Id = 0,
                             ParaText = "This is Para C"
                         },
                         new
                         {
                             ParaId = "D",
+                            Id = 0,
                             ParaText = "This is Para D"
                         });
                 });
@@ -60,10 +73,17 @@ namespace MovePara.Migrations
             modelBuilder.Entity("MovePara.Model.ParaLeft", b =>
                 {
                     b.Property<string>("ParaId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(10)")
+                        .HasColumnOrder(2);
 
-                    b.HasIndex("ParaId");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnOrder(1);
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.HasKey("ParaId");
 
                     b.ToTable("paraLeft");
                 });
@@ -71,10 +91,17 @@ namespace MovePara.Migrations
             modelBuilder.Entity("MovePara.Model.ParaRight", b =>
                 {
                     b.Property<string>("ParaId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(10)")
+                        .HasColumnOrder(2);
 
-                    b.HasIndex("ParaId");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnOrder(1);
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.HasKey("ParaId");
 
                     b.ToTable("paraRight");
                 });

@@ -11,8 +11,6 @@ namespace MovePara.Model
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ParaLeft>().HasNoKey();
-            modelBuilder.Entity<ParaRight>().HasNoKey();
             modelBuilder.Entity<Para>()
                 .HasData(new Para { ParaId = "A", ParaText = "This is Para A" },
                     new Para{ ParaId = "B", ParaText = "This is Para B" }, 

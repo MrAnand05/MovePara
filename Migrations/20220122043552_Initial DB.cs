@@ -4,7 +4,7 @@
 
 namespace MovePara.Migrations
 {
-    public partial class InitalDB : Migration
+    public partial class InitialDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,8 +12,10 @@ namespace MovePara.Migrations
                 name: "para",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     ParaId = table.Column<string>(type: "nvarchar(10)", nullable: false),
-                    ParaText = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ParaText = table.Column<string>(type: "nvarchar(50)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -24,10 +26,13 @@ namespace MovePara.Migrations
                 name: "paraLeft",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     ParaId = table.Column<string>(type: "nvarchar(10)", nullable: false)
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_paraLeft", x => x.ParaId);
                     table.ForeignKey(
                         name: "FK_paraLeft_para_ParaId",
                         column: x => x.ParaId,
@@ -40,10 +45,13 @@ namespace MovePara.Migrations
                 name: "paraRight",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     ParaId = table.Column<string>(type: "nvarchar(10)", nullable: false)
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_paraRight", x => x.ParaId);
                     table.ForeignKey(
                         name: "FK_paraRight_para_ParaId",
                         column: x => x.ParaId,
@@ -62,16 +70,6 @@ namespace MovePara.Migrations
                     { "C", "This is Para C" },
                     { "D", "This is Para D" }
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_paraLeft_ParaId",
-                table: "paraLeft",
-                column: "ParaId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_paraRight_ParaId",
-                table: "paraRight",
-                column: "ParaId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
