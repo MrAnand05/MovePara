@@ -10,14 +10,14 @@ Web API's
 
 # TODO:
 GitHub:
-TODO: commit with comments. 
+TODO: commit with comments. --Done 
 
 Model:
-TODO: Seperate file for each class
+TODO: Seperate file for each class --Done
 
 Controller:
-TODO: Function name initial letter in caps
-TODO: To make function async
-TODO: remove using _context 
-TODO: Send string for ParaDescription
-TODO: Remove unused variables
+TODO: Function name initial letter in caps --Done
+TODO: To make function async --Done
+TODO: remove using _context  --Done
+TODO: Send string for ParaDescription --Done
+TODO: Remove unused variables --Done
