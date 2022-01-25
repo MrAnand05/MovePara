@@ -6,6 +6,7 @@ using MovePara.Model;
 
 namespace MovePara.Controllers
 {
+    //TODO: Name of function and route to be same.
     [Route("[controller]")]
     [ApiController]
     public class ParasController : ControllerBase

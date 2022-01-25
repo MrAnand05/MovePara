@@ -8,6 +8,9 @@ namespace MovePara.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+
+    //TODO: Return only Id's from ParaRight.
+    //TODO: use select in ParaRight Desc.
     public class ParaRightsController : ControllerBase
     {
         private readonly ParaDbContext _context;
@@ -28,7 +31,8 @@ namespace MovePara.Controllers
         [Route("Desc")]
         public async Task<ActionResult<string>> GetParaRightDesc()
         {
-            var res= await _context.paraRight.Join(_context.para,pr=>pr.ParaId, p=>p.ParaId, (pr,p)=>new { Id = pr.Id, ParaText = p.ParaText }).OrderBy(x=>x.Id).ToListAsync();
+            var res= await _context.paraRight.Join(_context.para,pr=>pr.ParaId, p=>p.ParaId, (pr,p)=>new { Id = pr.Id, ParaText = p.ParaText })
+                    .OrderBy(x=>x.Id).ToListAsync();
             
             return string.Join(System.Environment.NewLine, res.Select(x=>x.ParaText));
         }

@@ -5,6 +5,8 @@ using MovePara.Model;
 
 namespace MovePara.Controllers
 {
+    //TODO: Return only Id's from Paraleft.
+    //TODO: Change the ordering of Left para.
     [Route("[controller]")]
     [ApiController]
     public class ParaLeftsController : ControllerBase
